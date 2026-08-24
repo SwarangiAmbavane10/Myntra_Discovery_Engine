@@ -391,14 +391,13 @@ if insights is None or opp_report is None or df_analyzed is None:
     st.stop()
 
 # Set up Tab Navigation
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     " Executive Summary", 
     " Wishlist Intent", 
     " Purchase Barriers", 
     " User Segments", 
     " Discovery Opportunities", 
-    " Ask the Discovery Engine",
-    " Metrics & Impact"
+    " Ask the Discovery Engine"
 ])
 
 # ----------------- Tab 1: Executive Summary -----------------
@@ -1084,84 +1083,3 @@ with tab6:
             if "url" in row and pd.notna(row["url"]):
                 st.markdown(f"[Original Post Link]({row['url']})")
             st.divider()
-
-# ----------------- Tab 7: Metrics & Impact -----------------
-with tab7:
-    st.markdown("### Product Metric Framework")
-    st.caption("Aligning discovery feature interactions with transactional business outcomes.")
-    st.divider()
-    
-    st.markdown('''
-    <div style="background-color: #161a22; padding: 25px; border-radius: 12px; border: 1px solid #2d3139; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.25);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 20px; font-weight: bold; color: #ff3f6c;">Proposed North Star Metric: 30-Day Wishlist &rarr; Purchase Rate</span>
-            <span class="badge" style="background-color: #fff3cd; color: #856404; font-size: 11px;">[!] Requires product event data</span>
-        </div>
-        <p style="color: #cbd5e0; font-size: 14px;"><strong>Definition:</strong> The percentage of unique users who purchase at least one product from their wishlist within 30 days of adding a product to their wishlist.</p>
-        <p style="color: #a0aec0; font-size: 13px; margin-bottom: 5px;"><strong>Mathematical Formula:</strong></p>
-        <div style="background-color: #0b0d10; padding: 16px; border-radius: 8px; border: 1px solid #2d3139; font-family: monospace; font-size: 14px; text-align: center; color: #cbd5e0;">
-            Users purchasing &ge;1 wishlisted product within 30 days<br>
-            ----------------------------------------------------------<br>
-            Users who added &ge;1 product to wishlist
-        </div>
-        <p style="color: #ffcc00; font-size: 12px; font-weight: bold; margin-top: 15px;">Current Metric Value: Requires behavioral event data (Unavailable in current qualitative research dataset)</p>
-    </div>
-    ''', unsafe_allow_html=True)
-    
-    st.markdown("#### Metric Hierarchy & Impact Path")
-    st.markdown('''
-    <div style="background-color: #161a22; padding: 20px; border-radius: 12px; border: 1px solid #2d3139; box-shadow: 0 4px 8px rgba(0,0,0,0.15); margin-bottom: 25px;">
-        <div style="text-align: center; margin-bottom: 12px;">
-            <div style="font-size: 11px; color: #ff3f6c; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">North Star</div>
-            <div style="font-size: 18px; font-weight: bold; color: #ff3f6c;">30-Day Wishlist &rarr; Purchase Rate</div>
-            <div style="font-size: 11px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires behavioral event data</div>
-        </div>
-        <div style="text-align: center; color: #ff3f6c; font-size: 18px; font-weight: bold; margin-bottom: 12px;">|</div>
-        <div style="text-align: center; margin-bottom: 12px;">
-            <div style="font-size: 11px; color: #ff3f6c; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L1 Business Outcome Metric</div>
-            <div style="font-size: 18px; font-weight: bold; color: #e2e8f0;">Wishlist &rarr; Purchase Conversion Rate</div>
-            <div style="font-size: 11px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires behavioral event data</div>
-        </div>
-        <div style="text-align: center; color: #ff3f6c; font-size: 18px; font-weight: bold; margin-bottom: 12px;">|</div>
-        <div style="display: flex; justify-content: space-around; margin-bottom: 12px; gap: 15px;">
-            <div style="flex: 1; text-align: center; background-color: #0b0d10; padding: 12px; border-radius: 8px; border: 1px solid #2d3139;">
-               <div style="font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L2 Metric: Decision Confidence</div>
-               <div style="font-size: 10px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires event data</div>
-            </div>
-            <div style="flex: 1; text-align: center; background-color: #0b0d10; padding: 12px; border-radius: 8px; border: 1px solid #2d3139;">
-               <div style="font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L2 Metric: Barrier Resolution Rate</div>
-               <div style="font-size: 10px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires event data</div>
-            </div>
-            <div style="flex: 1; text-align: center; background-color: #0b0d10; padding: 12px; border-radius: 8px; border: 1px solid #2d3139;">
-               <div style="font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L2 Metric: Decision-Support Engagement</div>
-               <div style="font-size: 10px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires event data</div>
-            </div>
-        </div>
-        <div style="text-align: center; color: #ff3f6c; font-size: 18px; font-weight: bold; margin-bottom: 12px;">|</div>
-        <div style="display: flex; justify-content: space-around; gap: 15px;">
-            <div style="flex: 1; text-align: center; background-color: #0b0d10; padding: 12px; border-radius: 8px; border: 1px solid #2d3139;">
-               <div style="font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L3 Metric: Comparison Engagement</div>
-               <div style="font-size: 10px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires event data</div>
-            </div>
-            <div style="flex: 1; text-align: center; background-color: #0b0d10; padding: 12px; border-radius: 8px; border: 1px solid #2d3139;">
-               <div style="font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L3 Metric: Review Insight Engagement</div>
-               <div style="font-size: 10px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires event data</div>
-            </div>
-            <div style="flex: 1; text-align: center; background-color: #0b0d10; padding: 12px; border-radius: 8px; border: 1px solid #2d3139;">
-               <div style="font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">L3 Metric: Fit/Size Info Engagement</div>
-               <div style="font-size: 10px; color: #ffcc00; font-weight: bold; margin-top: 2px;">[!] Requires event data</div>
-            </div>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
-    
-    rel_col1, rel_col2, rel_col3 = st.columns(3)
-    with rel_col1:
-        st.markdown("**L3 -> L2: Feature to Decision Validation**")
-        st.write("Engagement with specific discovery features (e.g., side-by-side comparison tables, sizing recommendations, and natural daylight review photos) directly reduces user uncertainty. This interaction drives up the shopper's L2 Decision Confidence and resolves identified purchase barriers.")
-    with rel_col2:
-        st.markdown("**L2 -> L1: Decision Validation to Conversion**")
-        st.write("Higher L2 Decision Confidence and active barrier resolution eliminate purchase postponement triggers. When shopper hesitation is cleared, users move significantly faster from evaluation to checkout, directly optimizing the L1 Wishlist-to-Purchase Conversion Rate.")
-    with rel_col3:
-        st.markdown("**L1 -> North Star: Conversion to Growth**")
-        st.write("Increasing the L1 Conversion Rate directly drives the core growth goal: increasing the percentage of users completing a transaction from their wishlist within 30 days (Proposed North Star Metric), maximizing the value extracted from pre-generated saved demand already present on the platform.")
