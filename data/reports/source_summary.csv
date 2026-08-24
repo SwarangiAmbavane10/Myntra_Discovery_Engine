@@ -1,0 +1,9 @@
+source,raw_records,duplicates_removed,clean_records,relevant_records,discovery_records
+Google Play,1008,298,710,710,5
+App Store,405,9,396,396,45
+Reddit,355,0,355,354,164
+YouTube,400,0,400,396,100
+Myntra,600,8,592,586,67
+Fashion Community,300,0,300,300,29
+Social Media,216,0,216,210,82
+Google Forms,5,0,5,5,5

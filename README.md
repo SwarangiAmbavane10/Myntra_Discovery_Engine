@@ -68,12 +68,37 @@ Public User Feedback (Play Store, App Store, Reddit, Forums)
 ---
 
 ## 6. How to Set Up & Run
-Once execution starts, dependencies can be installed using:
+Install python dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-To run the local developer interface (planned):
-```bash
-python app.py
+Configure your Gemini API key in a local `.env` file:
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
-See the respective phase folders for detailed modular configurations.
+Run the complete data pipeline (ingestion, cleaning, relevance filtering, AI analysis, clustering, opportunity scoring):
+```bash
+python -m engine.pipeline
+```
+To run the Streamlit dashboard:
+```bash
+streamlit run app.py
+```
+
+---
+
+## 7. Manual CSV/Excel Import Pipeline
+For platforms without direct automated scrapers (YouTube, Myntra reviews, Fashion Communities, Social Media), you can manually place CSV/Excel (`.csv` or `.xlsx`) or JSON (`.json`) exports in their corresponding subdirectories:
+* `data/raw/youtube/`
+* `data/raw/myntra/`
+* `data/raw/fashion_communities/`
+* `data/raw/social_media/`
+
+### CSV/Excel Formatting Templates
+To ensure records map successfully, include the following columns in your CSV or Excel files:
+* **YouTube**: `id`, `text`, `date`, `author`, `video_title` (or `title`), `likes` (or `engagement`), `url`
+* **Myntra**: `id`, `text`, `date`, `author`, `title` (or `review_title`), `rating` (or `score`), `product`, `product_id`, `category`, `brand`, `helpful` (or `engagement`)
+* **Fashion Communities**: `id`, `text`, `date`, `author`, `title`, `category` (or `community`), `engagement` (or `likes`)
+* **Social Media**: `id`, `text`, `date`, `author`, `url`, `engagement` (or `likes`)
+
+If any field is missing, the ingestion pipeline leaves it NULL. Do NOT invent data.
